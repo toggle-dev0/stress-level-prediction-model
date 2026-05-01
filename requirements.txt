@@ -1,0 +1,9 @@
+fastapi[standard]
+scikit-learn
+joblib
+numpy
+pandas
+uvicorn
+imbalanced-learn
+matplotlib
+seaborn
