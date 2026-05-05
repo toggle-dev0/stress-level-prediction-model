@@ -3,6 +3,7 @@ from pathlib import Path
 import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 ARTIFACT_PATH = Path("artifacts/stress_level_prediction_model.joblib")
@@ -12,6 +13,15 @@ app = FastAPI(
     version="1.0.0",
     description="A FastAPI server for serving a scikit-learn stress level prediction model",
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],            # Allows specific domains
+    allow_credentials=True,           # Allows cookies and auth headers
+    allow_methods=["*"],              # Allows all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],              # Allows all request headers
+)
+
 
 
 class PredictionRequest(BaseModel):
